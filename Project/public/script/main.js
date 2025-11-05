@@ -1,3 +1,5 @@
+console.log("main.js 読み込まれたよ！");
+
 // IPアドレス取得
 fetch('https://api.ipify.org?format=json')
   .then(res => res.json())
