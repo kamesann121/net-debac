@@ -1,6 +1,7 @@
 {
   "name": "net-debug-status",
   "version": "1.0.0",
+  "description": "ネットデバッグステータス表示＆ログ記録サーバー",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
