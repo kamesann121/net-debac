@@ -42,3 +42,86 @@ function measureCPU() {
   document.getElementById('cpu').textContent = 'CPU使用率: ' + usage + ' %';
 }
 setInterval(measureCPU, 5000);
+
+// ダウンロード速度測定（擬似）
+async function measureDownloadSpeed() {
+  const start = performance.now();
+  await fetch('https://via.placeholder.com/1000x1000.png');
+  const end = performance.now();
+  const speed = (100 / ((end - start) / 1000)).toFixed(2);
+  document.getElementById('download').textContent = 'ダウンロード速度: ' + speed + ' KB/s';
+}
+setInterval(measureDownloadSpeed, 5000);
+
+// アップロード速度測定（擬似）
+async function measureUploadSpeed() {
+  const data = new Blob([new ArrayBuffer(100000)]);
+  const start = performance.now();
+  await fetch('https://httpbin.org/post', {
+    method: 'POST',
+    body: data
+  });
+  const end = performance.now();
+  const speed = (100 / ((end - start) / 1000)).toFixed(2);
+  document.getElementById('upload').textContent = 'アップロード速度: ' + speed + ' KB/s';
+}
+setInterval(measureUploadSpeed, 7000);
+
+// DNS応答時間（擬似）
+async function measureDNS() {
+  const start = performance.now();
+  await fetch('https://example.com');
+  const end = performance.now();
+  document.getElementById('dns').textContent = 'DNS応答時間: ' + Math.round(end - start) + ' ms';
+}
+setInterval(measureDNS, 6000);
+
+// WebSocket接続状態
+const ws = new WebSocket('wss://echo.websocket.org');
+ws.onopen = () => {
+  document.getElementById('ws').textContent = 'WebSocket接続: OK';
+};
+ws.onerror = () => {
+  document.getElementById('ws').textContent = 'WebSocket接続: エラー';
+};
+
+// ブラウザ情報
+document.getElementById('browser').textContent = 'ブラウザ: ' + navigator.userAgent;
+
+// OS情報
+document.getElementById('os').textContent = 'OS: ' + navigator.platform;
+
+// バッテリー残量
+navigator.getBattery().then(battery => {
+  function updateBattery() {
+    const level = Math.round(battery.level * 100);
+    document.getElementById('battery').textContent = 'バッテリー残量: ' + level + ' %';
+  }
+  updateBattery();
+  battery.addEventListener('levelchange', updateBattery);
+});
+
+// 画面解像度
+document.getElementById('resolution').textContent =
+  '画面解像度: ' + window.screen.width + ' x ' + window.screen.height;
+
+// 位置情報
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(pos => {
+    const { latitude, longitude } = pos.coords;
+    document.getElementById('location').textContent =
+      '位置情報: 緯度 ' + latitude.toFixed(4) + ', 経度 ' + longitude.toFixed(4);
+  }, () => {
+    document.getElementById('location').textContent = '位置情報: 取得失敗';
+  });
+} else {
+  document.getElementById('location').textContent = '位置情報: 非対応';
+}
+
+// 接続タイプ
+if (navigator.connection) {
+  document.getElementById('connection').textContent =
+    '接続タイプ: ' + navigator.connection.effectiveType;
+} else {
+  document.getElementById('connection').textContent = '接続タイプ: 不明';
+}
