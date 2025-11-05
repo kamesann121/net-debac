@@ -125,3 +125,32 @@ if (navigator.connection) {
 } else {
   document.getElementById('connection').textContent = '接続タイプ: 不明';
 }
+
+// Renderにステータス情報を送信
+function sendStatusToServer() {
+  const data = {
+    ip: document.getElementById('ip').textContent,
+    ping: document.getElementById('ping').textContent,
+    fps: document.getElementById('fps').textContent,
+    cpu: document.getElementById('cpu').textContent,
+    download: document.getElementById('download').textContent,
+    upload: document.getElementById('upload').textContent,
+    dns: document.getElementById('dns').textContent,
+    ws: document.getElementById('ws').textContent,
+    browser: document.getElementById('browser').textContent,
+    os: document.getElementById('os').textContent,
+    battery: document.getElementById('battery').textContent,
+    resolution: document.getElementById('resolution').textContent,
+    location: document.getElementById('location').textContent,
+    connection: document.getElementById('connection').textContent
+  };
+
+  fetch('/api/track', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+}
+
+// ページ読み込み後に一度送信（必要なら定期送信もOK）
+setTimeout(sendStatusToServer, 8000);
