@@ -9,17 +9,23 @@
 <body>
   <img src="/assets/logo.png" alt="ロゴ" class="logo">
   <h1>⚡ ネットデバッグステータス ⚡</h1>
-<!-- 既存のステータスの下に追加 -->
-<div class="status" id="download">ダウンロード速度: 測定中...</div>
-<div class="status" id="upload">アップロード速度: 測定中...</div>
-<div class="status" id="dns">DNS応答時間: 測定中...</div>
-<div class="status" id="ws">WebSocket接続: チェック中...</div>
-<div class="status" id="browser">ブラウザ: 取得中...</div>
-<div class="status" id="os">OS: 取得中...</div>
-<div class="status" id="battery">バッテリー残量: 取得中...</div>
-<div class="status" id="resolution">画面解像度: 取得中...</div>
-<div class="status" id="location">位置情報: 取得中...</div>
-<div class="status" id="connection">接続タイプ: 取得中...</div>
+
+  <div class="status-container">
+    <div class="status" id="ip">IPアドレス: 取得中...</div>
+    <div class="status" id="ping">Ping: 測定中...</div>
+    <div class="status" id="fps">FPS: 測定中...</div>
+    <div class="status" id="cpu">CPU使用率: 測定中...</div>
+    <div class="status" id="download">ダウンロード速度: 測定中...</div>
+    <div class="status" id="upload">アップロード速度: 測定中...</div>
+    <div class="status" id="dns">DNS応答時間: 測定中...</div>
+    <div class="status" id="ws">WebSocket接続: チェック中...</div>
+    <div class="status" id="browser">ブラウザ: 取得中...</div>
+    <div class="status" id="os">OS: 取得中...</div>
+    <div class="status" id="battery">バッテリー残量: 取得中...</div>
+    <div class="status" id="resolution">画面解像度: 取得中...</div>
+    <div class="status" id="location">位置情報: 取得中...</div>
+    <div class="status" id="connection">接続タイプ: 取得中...</div>
+  </div>
 
   <script src="/script/main.js"></script>
 </body>
