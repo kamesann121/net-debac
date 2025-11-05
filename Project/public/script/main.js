@@ -151,6 +151,47 @@ function sendStatusToServer() {
     body: JSON.stringify(data)
   });
 }
-
-// ページ読み込み後に一度送信（必要なら定期送信もOK）
 setTimeout(sendStatusToServer, 8000);
+
+// 🧠 メモリ使用量（対応ブラウザ限定）
+function checkMemoryUsage() {
+  if (performance.memory) {
+    const usedMB = (performance.memory.usedJSHeapSize / 1048576).toFixed(2);
+    const totalMB = (performance.memory.totalJSHeapSize / 1048576).toFixed(2);
+    console.log(`🧠 メモリ使用量: ${usedMB}MB / ${totalMB}MB`);
+  } else {
+    console.log('🧠 メモリ情報: 非対応ブラウザ');
+  }
+}
+setInterval(checkMemoryUsage, 10000);
+
+// 🌐 ネットワーク詳細
+function logConnectionDetails() {
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (conn) {
+    console.log(`🌐 接続タイプ: ${conn.effectiveType}`);
+    console.log(`🌐 下り速度: ${conn.downlink} Mbps`);
+    console.log(`🌐 RTT: ${conn.rtt} ms`);
+    console.log(`🌐 データセーバー: ${conn.saveData ? 'ON' : 'OFF'}`);
+  } else {
+    console.log('🌐 接続情報: 非対応ブラウザ');
+  }
+}
+logConnectionDetails();
+
+// 🧪 ブラウザ機能チェック
+function checkBrowserFeatures() {
+  console.log(`🧪 WebGL: ${!!window.WebGLRenderingContext}`);
+  console.log(`🧪 WebRTC: ${!!navigator.mediaDevices}`);
+  console.log(`🧪 ServiceWorker: ${'serviceWorker' in navigator}`);
+  console.log(`🧪 Notification: ${'Notification' in window}`);
+}
+checkBrowserFeatures();
+
+// 🍪 Cookie & Storage 状態確認
+function logStorageStatus() {
+  console.log(`🍪 Cookie: ${document.cookie || 'なし'}`);
+  console.log(`📦 localStorage: ${JSON.stringify(localStorage)}`);
+  console.log(`📦 sessionStorage: ${JSON.stringify(sessionStorage)}`);
+}
+logStorageStatus();
