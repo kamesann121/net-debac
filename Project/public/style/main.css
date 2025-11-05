@@ -1,34 +1,57 @@
 body {
-  margin: 0;
   font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
-  color: #00ffe7;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
 }
 
 .logo {
-  width: 100px;
-  margin-bottom: 20px;
+  width: 120px;
+  margin-bottom: 10px;
 }
 
 h1 {
   font-size: 2em;
-  margin-bottom: 20px;
-  text-shadow: 0 0 10px #00ffe7;
+  margin-bottom: 30px;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
 }
 
+/* グリッドレイアウトでステータスを並べる */
+.status-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+/* 各ステータスカードのスタイル */
 .status {
-  background: rgba(0, 255, 231, 0.1);
-  border: 1px solid #00ffe7;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #00ffff;
   border-radius: 10px;
-  padding: 15px 25px;
-  margin: 10px;
-  font-size: 1.2em;
-  width: 300px;
-  text-align: center;
-  box-shadow: 0 0 15px #00ffe7;
+  padding: 15px;
+  font-size: 1.1em;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ホバー時のアニメーション */
+.status:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .status {
+    font-size: 1em;
+  }
 }
